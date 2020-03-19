@@ -2,10 +2,19 @@
 Table table;
 String[] provinceNames = {"WC", "KZN", "GP", "MP", "LP", "NW", "FS", "EC", "NC"};
 int[] provinces = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+int[] lat = {110, 370, 305, 360, 325, 235, 250, 250, 130};
+int[] lon = {355, 210, 140, 125, 65, 145, 225, 315, 240};
 
+PImage map1;
 void setup() {
-  size(500, 500);
-  colorMode(HSB, 255);
+  size(450, 383);
+//  colorMode(HSB, 255);
+textSize(20);
+  map1 = loadImage("map.gif");
+  background(map1);
+  //offline for testing:
+//  table = loadTable("data.csv", "header, csv");
+  //online:
   table = loadTable("https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv", "header, csv");
 
   for (TableRow row : table.rows()) {
@@ -26,11 +35,15 @@ void setup() {
 
 //  println(table.getRowCount() + " total rows in table"); 
 for(int i = 0; i < provinces.length; i++){
-  text("total " + provinceNames[i] + ": " + provinces[i], 20, 50*i+50);
+  fill(0);
+//  text("total " + provinceNames[i] + ": " + provinces[i], 20, 30*i+30);
+text(provinces[i], lat[i], lon[i]);
 println("total " + provinceNames[i] + ": " + provinces[i]);
 //fill(random(100));
 //ellipse(150*i, 100, 2*provinces[i], 2*provinces[i]);
 }
+
+
 
   
 }

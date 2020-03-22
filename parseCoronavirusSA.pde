@@ -7,11 +7,14 @@ int[] lon = {355, 210, 140, 125, 65, 145, 225, 315, 240};
 
 PImage map1;
 void setup() {
-  size(450, 383);
+  noLoop(); //new try this
+  size(800, 800);
 //  colorMode(HSB, 255);
 textSize(20);
   map1 = loadImage("map.gif");
-  background(map1);
+  background(0);
+  image(map1, 0, 0, width, height);
+  //background(map1);
   //offline for testing:
 //  table = loadTable("data.csv", "header, csv");
   //online:
@@ -37,7 +40,10 @@ textSize(20);
 for(int i = 0; i < provinces.length; i++){
   fill(0);
 //  text("total " + provinceNames[i] + ": " + provinces[i], 20, 30*i+30);
-text(provinces[i], lat[i], lon[i]);
+//adjust text co-ordinates
+float latAdj = map(lat[i], 0, 450, 0, width);
+float lonAdj = map(lon[i], 0, 383, 0, height);
+text(provinces[i], latAdj, lonAdj);
 println("total " + provinceNames[i] + ": " + provinces[i]);
 //fill(random(100));
 //ellipse(150*i, 100, 2*provinces[i], 2*provinces[i]);

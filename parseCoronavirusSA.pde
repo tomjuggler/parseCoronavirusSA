@@ -4,9 +4,11 @@ String[] provinceNames = {"WC", "KZN", "GP", "MP", "LP", "NW", "FS", "EC", "NC"}
 int[] provinces = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 int[] lat = {110, 370, 305, 360, 325, 235, 250, 250, 130};
 int[] lon = {355, 210, 140, 125, 65, 145, 225, 315, 240};
+int total = 0;
 
 PImage map1;
 void setup() {
+  total = 0; //double check we get this right at the start
   noLoop(); //new try this
   size(800, 800);
 //  colorMode(HSB, 255);
@@ -21,7 +23,7 @@ textSize(20);
   table = loadTable("https://raw.githubusercontent.com/dsfsi/covid19za/master/data/covid19za_timeline_confirmed.csv", "header, csv");
 
   for (TableRow row : table.rows()) {
-    
+    total++;
     String num = row.getString("case_id");
     String province = row.getString("province");
     
@@ -48,7 +50,9 @@ println("total " + provinceNames[i] + ": " + provinces[i]);
 //fill(random(100));
 //ellipse(150*i, 100, 2*provinces[i], 2*provinces[i]);
 }
-
+float latAdj = map(340, 0, 450, 0, width);
+float lonAdj = map(350, 0, 383, 0, height);
+text(total, latAdj, lonAdj);
 
 
   

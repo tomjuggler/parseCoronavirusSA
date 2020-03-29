@@ -1,4 +1,8 @@
-
+////////////////////new total://///////////////
+import http.requests.*;
+JSONArray values;
+JSONObject corona;
+//////////////////////////////////////////////
 Table table;
 String[] provinceNames = {"WC", "KZN", "GP", "MP", "LP", "NW", "FS", "EC", "NC"};
 int[] provinces = {0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -7,10 +11,19 @@ int[] lon = {355, 210, 140, 125, 65, 145, 225, 315, 240};
 int total = 0;
 
 PImage map1;
+
 void setup() {
   total = 0; //double check we get this right at the start
   noLoop(); //new try this
   size(800, 800);
+  /////////////////////new total://////////////////////////////
+    GetRequest get3 = new GetRequest("http://thevirustracker.com/free-api?countryTotal=ZA"); 
+  get3.send(); // program will wait untill the request is completed
+  corona = parseJSONObject(get3.getContent()); 
+    values = corona.getJSONArray("countrydata");
+   JSONObject valueObj = values.getJSONObject(0);
+    int newTotal = valueObj.getInt("total_cases");
+///////////////////////////now we have total////////////////////
 //  colorMode(HSB, 255);
 textSize(20);
   map1 = loadImage("map.gif");
@@ -52,8 +65,5 @@ println("total " + provinceNames[i] + ": " + provinces[i]);
 }
 float latAdj = map(340, 0, 450, 0, width);
 float lonAdj = map(350, 0, 383, 0, height);
-text(total, latAdj, lonAdj);
-
-
-  
+text(newTotal, latAdj, lonAdj); //total or newTotal.. newTotal more up to date
 }

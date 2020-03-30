@@ -1,5 +1,5 @@
 ////////////////////new total://///////////////
-import http.requests.*;
+//import http.requests.*;
 JSONArray values;
 JSONObject corona;
 //////////////////////////////////////////////
@@ -7,11 +7,11 @@ Table table;
 String[] provinceNames = {"WC", "KZN", "GP", "MP", "LP", "NW", "FS", "EC", "NC", "UNKNOWN", "total"};
 
 int[] provinces = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-int[] lat = {110, 370, 305, 360, 325, 235, 250, 250, 130, 290, 0};
-int[] lon = {355, 210, 130, 125, 65, 145, 225, 315, 240, 370, 0};
+int[] lat = {110, 370, 305, 360, 325, 235, 250, 250, 130, 290, 340};
+int[] lon = {355, 210, 130, 125, 65, 145, 225, 315, 240, 370, 350};
 int total = 0;
-int completedTotal = 0;
-boolean ready = false;
+//int completedTotal = 0;
+//boolean ready = false;
 PImage map1;
 
 void setup() {
@@ -19,12 +19,12 @@ void setup() {
   noLoop(); //new try this
   size(800, 800);
   /////////////////////new total://////////////////////////////
-    GetRequest get3 = new GetRequest("http://thevirustracker.com/free-api?countryTotal=ZA"); 
-  get3.send(); // program will wait until the request is completed
-  corona = parseJSONObject(get3.getContent()); 
-    values = corona.getJSONArray("countrydata");
-   JSONObject valueObj = values.getJSONObject(0);
-    int newTotal = valueObj.getInt("total_cases");
+  //  GetRequest get3 = new GetRequest("http://thevirustracker.com/free-api?countryTotal=ZA"); 
+  //get3.send(); // program will wait until the request is completed
+  //corona = parseJSONObject(get3.getContent()); 
+  //  values = corona.getJSONArray("countrydata");
+  // JSONObject valueObj = values.getJSONObject(0);
+  //  int newTotal = valueObj.getInt("total_cases");
 ///////////////////////////now we have total////////////////////
 //  colorMode(HSB, 255);
 textSize(20);
@@ -86,9 +86,9 @@ println("total " + provinceNames[i] + ": " + provinces[i]);
 //fill(random(100));
 //ellipse(150*i, 100, 2*provinces[i], 2*provinces[i]);
 }
-float latAdj = map(340, 0, 450, 0, width);
-float lonAdj = map(350, 0, 383, 0, height);
-text(newTotal, latAdj, lonAdj); //total or newTotal.. newTotal more up to date
+//float latAdj = map(340, 0, 450, 0, width);
+//float lonAdj = map(350, 0, 383, 0, height);
+//text(newTotal, latAdj, lonAdj); //total or newTotal.. newTotal more up to date
 //unknown
 float latAdj2 = map(290, 0, 450, 0, width);
 float lonAdj2 = map(370, 0, 383, 0, height);
